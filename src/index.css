@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary-dark: #10232D;
+    --color-deep-navy: #183642;
+    --color-accent-aqua: #4F9DA6;
+    --color-warm-ivory: #F7F6F1;
+    --color-white: #FFFFFF;
+    --color-steel: #D7DEE1;
+    --color-muted-text: #69767D;
+    --color-soft-aqua: #DCECEE;
+    --color-error: #C94B45;
+    --color-divider: #4B626B;
+
+    --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #10232D;
+    background-color: #F7F6F1;
+    overflow-x: hidden;
+  }
+
+  /* Monospace tabular numerals */
+  .tabular-numbers {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom cinematic motion utility classes */
+.transition-cinematic {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.transition-fluid {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth link hover underline in Accent Aqua #4F9DA6 */
+.hover-underline-cinematic {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-underline-cinematic::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: #4F9DA6;
+  transform-origin: left center;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-underline-cinematic:hover::after {
+  transform: scaleX(1);
+}
+
+/* Pipe draw and fluid pulse keyframes */
+@keyframes pipeDraw {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+@keyframes pipePulse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pipeExit {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+}
+
+/* Prevent unwanted scrollbars during animations */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
